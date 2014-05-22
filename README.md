@@ -7,7 +7,7 @@ Node.js wrapper for the Google Contacts API.
 # Usage
 
 ```javascript
-var GoogleContacts = require('googlecontacts').GoogleContacts;
+var GoogleContacts = require('google-contacts').GoogleContacts;
 var c = new GoogleContacts({
   token: 'oauth2 token...'
 });
