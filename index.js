@@ -157,6 +157,7 @@ GoogleContacts.prototype._buildPath = function (params) {
 
   var query = {
     alt: params.alt,
+    group: params.group || null,
     'max-results': params['max-results']
   };
   if(params['updated-min'])
