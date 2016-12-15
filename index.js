@@ -96,7 +96,7 @@ GoogleContacts.prototype._get = function (params, cb) {
 
 GoogleContacts.prototype.getContacts = function (cb, params) {
     var self = this;
-    
+
     this._get(_.extend({type: 'contacts'}, this.params, params), receivedContacts);
     function receivedContacts(err, data) {
         if (err) return cb(err);
