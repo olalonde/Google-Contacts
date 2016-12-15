@@ -96,6 +96,7 @@ GoogleContacts.prototype._get = function (params, cb) {
 
 GoogleContacts.prototype.getContacts = function (cb, params) {
     var self = this;
+    
     this._get(_.extend({type: 'contacts'}, this.params, params), receivedContacts);
     function receivedContacts(err, data) {
         if (err) return cb(err);
@@ -167,8 +168,6 @@ GoogleContacts.prototype._buildPath = function (params) {
     params.projection = params.projection || (params.thin ? 'thin' : 'full');
     params.email = params.email || 'default';
     params['max-results'] = params['max-results'] || 10000;
-
-    console.log('params', params)
 
     var query = {
         alt: params.alt
