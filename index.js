@@ -97,7 +97,7 @@ GoogleContacts.prototype._get = function (params, cb) {
 GoogleContacts.prototype.getContacts = function (cb, params) {
     var self = this;
 
-    this._get(_.extend({type: 'contacts'}, params, this.params), receivedContacts);
+    this._get(_.extend({type: 'contacts'}, this.params, params), receivedContacts);
     function receivedContacts(err, data) {
         if (err) return cb(err);
 
@@ -135,7 +135,7 @@ GoogleContacts.prototype.getContact = function (cb, params) {
     function receivedContact(err, contact) {
         if (err) return cb(err);
 
-        cb(null, contact);
+        cb(null, _.get(contact, 'entry', []));
     }
 
 };
@@ -162,7 +162,7 @@ GoogleContacts.prototype._saveContactsFromFeed = function (feed) {
 GoogleContacts.prototype._buildPath = function (params) {
     if (params.path) return params.path;
 
-    params = _.extend({}, params, this.params);
+    params = _.extend({}, this.params, params);
     params.type = params.type || 'contacts';
     params.alt = params.alt || 'json';
     params.projection = params.projection || (params.thin ? 'thin' : 'full');
