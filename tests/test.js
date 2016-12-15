@@ -31,8 +31,6 @@ c.getContacts(function (err, contacts) {
   });
 });
 
-
-
 process.on('exit', function () {
   if (!contactsTested || !contactTested) {
     throw new Error('contact test failed');
