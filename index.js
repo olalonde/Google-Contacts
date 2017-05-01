@@ -153,14 +153,16 @@ GoogleContacts.prototype._saveContactsFromFeed = function (feed) {
                 phoneNumber: _.get(entry, 'gd$phoneNumber.0.uri', '').replace('tel:', ''),
                 id: url.substring(_.lastIndexOf(url, '/') + 1)
             };
-            var primaryEmail = el.emails.filter(function(email) {
-              return email.primary === 'true';
-            });
-            el.emails = el.emails.map(function(email) {
-              return email.address;
-            });
-            if (primaryEmail.length) {
-              el.email = primaryEmail[0];
+            if (el.email) {
+              var primaryEmail = el.emails.filter(function(email) {
+                return email.primary === 'true';
+              });
+              el.emails = el.emails.map(function(email) {
+                return email.address;
+              });
+              if (primaryEmail.length) {
+                el.email = primaryEmail[0];
+              }
             }
         } else {
             el = entry;
