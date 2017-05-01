@@ -149,15 +149,16 @@ GoogleContacts.prototype._saveContactsFromFeed = function (feed) {
             el = {
                 name: _.get(entry, 'title.$t'),
                 email: _.get(entry, 'gd$email.0.address'), // only save first email
-                emails: _.get(entry, 'gd$email').map(function(email) {
-                  return email.address;
-                }),
+                emails: _.get(entry, 'gd$email'),
                 phoneNumber: _.get(entry, 'gd$phoneNumber.0.uri', '').replace('tel:', ''),
                 id: url.substring(_.lastIndexOf(url, '/') + 1)
             };
             var primaryEmail = el.emails.filter(function(email) {
               return email.primary === 'true';
             });
+            el.emails = el.emails.map(function(email) {
+              return email.address;
+            }),
             if (primaryEmail.length) {
               el.email = primaryEmail[0];
             }
