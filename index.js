@@ -158,7 +158,7 @@ GoogleContacts.prototype._saveContactsFromFeed = function (feed) {
             });
             el.emails = el.emails.map(function(email) {
               return email.address;
-            }),
+            });
             if (primaryEmail.length) {
               el.email = primaryEmail[0];
             }
